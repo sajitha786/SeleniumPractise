@@ -1,89 +1,58 @@
 import org.openqa.selenium.By;
 
-
-
 import org.openqa.selenium.Keys;
-
-
 
 import org.openqa.selenium.WebDriver;
 
-
-
 import org.openqa.selenium.WebElement;
-
-
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
-
 import org.openqa.selenium.support.ui.Select;
-
-
 
 public class Assignment6Solution {
 
-
-
-public static void main(String[] args) {
-
-
+	public static void main(String[] args) {
 
 // TODO Auto-generated method stub
 
+		System.setProperty("webdriver.chrome.driver", "C://work//chromedriver.exe");
 
+		WebDriver driver = new ChromeDriver();
 
-System.setProperty("webdriver.chrome.driver", "C://work//chromedriver.exe");
+		driver.get("http://qaclickacademy.com/practice.php");
 
-   
+		driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]/input")).click();
 
-        WebDriver driver = new ChromeDriver();
+		String opt = driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]")).getText();
 
-   
+		WebElement dropdown = driver.findElement(By.id("dropdown-class-example"));
 
-        driver.get("http://qaclickacademy.com/practice.php");
+		Select s = new Select(dropdown);
 
-        driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]/input")).click();
+		s.selectByVisibleText(opt);
 
-        String opt=driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]")).getText();
+		driver.findElement(By.name("enter-name")).sendKeys(opt);
 
-        WebElement dropdown=driver.findElement(By.id("dropdown-class-example"));
+		driver.findElement(By.id("alertbtn")).click();
 
-        Select s=new Select(dropdown);
+		String text = driver.switchTo().alert().getText();
 
-        s.selectByVisibleText(opt);
+		if (text.contains(opt))
 
-        driver.findElement(By.name("enter-name")).sendKeys(opt);
+		{
 
-        driver.findElement(By.id("alertbtn")).click();
+			System.out.println("Alert message success");
 
-     String text=  driver.switchTo().alert().getText();
+		}
 
-     if(text.contains(opt))
+		else
 
-     {
+			System.out.println("Something wrong with execution");
 
-    System.out.println("Alert message success");
+	}
 
-     }
-
-     else
-
-    System.out.println("Something wrong with execution");
-
-}
-
-       
-
-       
-
-     //  System.out.println( driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]")).getText());   
-
-       
-
-       
-
-
+	// System.out.println(
+	// driver.findElement(By.xpath("//*[@id='checkbox-example']/fieldset/label[2]")).getText());
 
 }
