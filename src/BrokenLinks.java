@@ -21,16 +21,15 @@ public class BrokenLinks {
 		
 		String url= driver.findElement(By.cssSelector("a[href*='soapui']")).getAttribute("href");
 		String url1=driver.findElement(By.cssSelector("a[href*='brokenlink']")).getAttribute("href");
-		//connecting the url to get response code
 		
+		//connecting the url to get response code
 		HttpURLConnection con= (HttpURLConnection)new URL(url1).openConnection();
 		con.setRequestMethod("HEAD");
 		con.connect();
 		int respCode= con.getResponseCode();
 		System.out.println(respCode);
 		
-		
-		
+
 		driver.close();
 	}
 
