@@ -7,14 +7,20 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class MaxWindowAndDeleteCookies {
+public class MaxWindowAndDeleteCookiesAndScreenShot {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
 		WebDriver driver= new ChromeDriver();
 		driver.manage().window().maximize();
+		
+		//delete all cookies
 		driver.manage().deleteAllCookies();
+		
+		//delete a particular cookies
 		//driver.manage().deleteCookieNamed("sessionKey");
+		
+		
 		//click on any link, it will redirect to login page
 		//As the session is deleted. thus we can verify login functionality
 		driver.get("https://www.google.com/");
